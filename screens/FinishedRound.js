@@ -1,8 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-export default function ProfileScreen(props) {
-    let {cards} = props
+export default function FinishedRound({cards}) {
 
     return (
         <View>

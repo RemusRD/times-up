@@ -6,7 +6,24 @@ import FinishedRound from "./screens/FinishedRound";
 
 const Stack = createStackNavigator();
 
-
+function NavStack({children}) {
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerTitleAlign: 'center',
+                headerStyle: {
+                    backgroundColor: '#621FF7',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                },
+            }}
+        >
+            {children}
+        </Stack.Navigator>
+    );
+}
 
 export default function App() {
     let cards = ["abeja", "águila", "araña", "avispa", "ballena", "bisonte", "búfalo", "burro", "caballo", "camello", "canario", "cangrejo", "canguro", "caracol", "cebra", "cerdo", "chimpancé", "ciervo", "cisne", "cocodrilo", "elefante", "escarabajo", "escorpión", "foca", "gallina", "gallo", "gato", "golondrina", "hipopótamo", "hormiga", "jabalí", "jirafa", "león", "loro", "mosca", "mosquito", "oso", "oveja", "perdiz", "perro", "pingüino", "pollo", "saltamontes", "serpiente", "tigre", "topo", "toro", "tortuga", "vaca", "zorro"]
@@ -16,56 +33,31 @@ export default function App() {
     const [score, setScore] = useState(0)
 
 
-    function NavStack() {
-        return (
-            <Stack.Navigator
-                screenOptions={{
-                    headerTitleAlign: 'center',
-                    headerStyle: {
-                        backgroundColor: '#621FF7',
-                    },
-                    headerTintColor: '#fff',
-                    headerTitleStyle :{
-                        fontWeight: 'bold',
-                    },
-                }}
-            >
+    return (
+        <NavigationContainer>
+            <NavStack>
                 <Stack.Screen
-                    name="Round"
-                    component={RoundWithProps}
-                />
+                    name="Round">
+                    {props => <Round {...props} onGuessed={notGuessedCard}
+                                     cards={remainingCards}
+                                     onNotGuessed={guessedCard}
+                                     onFinish={(navigation) => navigation.navigate("FinishedRound")} />}
+                </Stack.Screen>
                 <Stack.Screen
                     name="FinishedRound"
                     component={FinishedRound}
                 />
-            </Stack.Navigator>
-        );
-    }
-
-    function RoundWithProps() {
-        return <Round onGuessed={() => notGuessedCard()}
-                      cards={remainingCards}
-                      onNotGuessed={() => guessedCard()}
-                      onFinish={(navigation) => navigation.navigate("FinishedRound")}
-        />;
-    }
-
-    return (
-        <NavigationContainer>
-            <NavStack/>
+            </NavStack>
         </NavigationContainer>
     );
-
-
 
 
     function guessedCard() {
         guessedCards.push({
             name: remainingCards[0],
-            guessed : true
+            guessed: true
         })
         setRemainingCards(remainingCards.slice(1))
-        setScore(score + 1)
     }
 
     function notGuessedCard() {

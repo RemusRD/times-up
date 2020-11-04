@@ -19,8 +19,8 @@ export function Round(props) {
             <Button title={"✔️"} onPress={props.onNotGuessed}/>
         </View>
         <CountDownTimer
-            seconds={50}
-            active={true}
+            initialSeconds={2}
+            initialActive={true}
             onFinish={props.onFinish}
         />
 

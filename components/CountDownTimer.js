@@ -2,18 +2,18 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, Button} from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
-export const CountDownTimer = (props) => {
-    let {seconds, active, onFinish} = props
-    const [secondsLeft, setSecondsLeft] = useState(seconds);
-    const [isActive, setIsActive] = useState(active);
-    let navigation = useNavigation();
+export const CountDownTimer = ({initialSeconds, initialActive, onFinish}) => {
+    const navigation = useNavigation()
+    const [secondsLeft, setSecondsLeft] = useState(initialSeconds);
+    const [isActive, setIsActive] = useState(initialActive);
+
 
     function toggle() {
         setIsActive(!isActive);
     }
 
     function reset() {
-        setSecondsLeft(seconds);
+        setSecondsLeft(initialSeconds);
         setIsActive(false);
     }
 
@@ -48,4 +48,4 @@ export const CountDownTimer = (props) => {
             </View>
         </View>
     );
-};
+}
