@@ -41,7 +41,9 @@ export default function App() {
                     {props => <Round {...props} onGuessed={notGuessedCard}
                                      cards={remainingCards}
                                      onNotGuessed={guessedCard}
-                                     onFinish={(navigation) => navigation.navigate("FinishedRound")} />}
+                                     onFinish={(navigation) => navigation.navigate("FinishedRound",
+                                         {cards: guessedCards.concat(notGuessedCards)})}
+                    />}
                 </Stack.Screen>
                 <Stack.Screen
                     name="FinishedRound"

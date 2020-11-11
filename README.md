@@ -1,4 +1,4 @@
-# My Universal React Project
+# Find out
 
 <p>
   <!-- iOS -->
@@ -15,30 +15,54 @@
   </a>
 </p>
 
-## 🚀 How to use
+## 🚀 How to run locally 
 
-- Install packages with `yarn` or `npm install`.
-  - If you have native iOS code run `npx pod-install`
-- Run `yarn start` to start the bundler.
-- Open the project in a React runtime to try it:
-  - iOS: [Client iOS](https://itunes.apple.com/app/apple-store/id982107779)
-  - Android: [Client Android](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample)
-  - Web: Any web browser
+## Install wsl for windows
 
-## Adding Native Code
+Follow [https://docs.microsoft.com/es-es/windows/wsl/install-win10](https://docs.microsoft.com/es-es/windows/wsl/install-win10)
 
-This project can be run from a web browser or the Expo client app. You may find that you want to add more native code later on. You can do this by ejecting the project and rebuilding it yourself.
+## install brew for linux
 
-- Run `yarn eject` to create the native projects.
-- You can still run your project in the web browser or Expo client, you just won't be able to access any new native modules you add.
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+```
 
-## Publishing
+## Make the subsystem launch w/ the brew config
 
-- Deploy the native app to the App store and Play store using this guide: [Deployment](https://docs.expo.io/distribution/app-stores/).
-- Deploy the website using this guide: [Web deployment](https://docs.expo.io/distribution/publishing-websites/).
+```bash
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+```
 
-## 📝 Notes
+## Update Linux
 
-- Learn more about [Universal React](https://docs.expo.io/).
-- See what API and components are [available in the React runtimes](https://docs.expo.io/versions/latest/).
-- Find out more about developing apps and websites: [Guides](https://docs.expo.io/guides/).
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+```
+
+## Install yarn
+
+```bash
+brew install yarn
+```
+
+## Install project dependencies
+
+Move to the project folder inside the wsl terminal.
+
+```bash
+/mnt/c/Users/user.name/path.to.project.in.c.disk
+```
+
+```bash
+yarn install 
+```
+
+## Start the app
+
+```bash
+yarn start
+```
